@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, MessageCircle, Phone } from "lucide-react";
-import { CLINIC, DENTAL_SERVICES, DOCTORS, SKIN_SERVICES } from "@/lib/clinic";
+import { BOOKING_TREATMENTS, CLINIC, DOCTORS } from "@/lib/clinic";
 import { Reveal } from "./reveal";
 
 const STEPS = ["Treatment", "Doctor", "Date", "Time", "Your details", "Confirm"];
@@ -21,9 +21,11 @@ function nextDays(count: number) {
   return out;
 }
 
-export function Booking() {
+export function Booking({ initialTreatment = "" }: { initialTreatment?: string }) {
   const [step, setStep] = useState(0);
-  const [treatment, setTreatment] = useState("");
+  const [treatment, setTreatment] = useState(
+    BOOKING_TREATMENTS.includes(initialTreatment) ? initialTreatment : "",
+  );
   const [doctor, setDoctor] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -32,10 +34,7 @@ export function Booking() {
   const [notes, setNotes] = useState("");
   const days = useMemo(() => nextDays(12), []);
 
-  const treatments = [
-    ...DENTAL_SERVICES.map((s) => s.title),
-    ...SKIN_SERVICES.map((s) => `${s.title} (Skin)`),
-  ];
+  const treatments = BOOKING_TREATMENTS;
 
   const cleanPhone = phone.trim().replace(/[\s\-()]/g, "");
   const digitsOnly = phone.replace(/\D/g, "");
@@ -62,8 +61,7 @@ Time: ${time}
 Name: ${name}
 Phone: ${phone}${notes ? `\nNotes: ${notes}` : ""}`;
 
-  const phoneRaw =
-    (CLINIC as { phoneRaw?: string }).phoneRaw ?? CLINIC.phoneHref.replace(/\D/g, "");
+  const phoneRaw = CLINIC.phoneHref.replace(/\D/g, "");
   const waHref = `https://wa.me/${phoneRaw}?text=${encodeURIComponent(summary)}`;
 
   return (
@@ -191,7 +189,11 @@ Phone: ${phone}${notes ? `\nNotes: ${notes}` : ""}`;
 
               {step === 3 && (
                 <div>
-                  <h3 className="text-lg font-semibold tracking-tight">Available times</h3>
+                  <h3 className="text-lg font-semibold tracking-tight">Preferred time</h3>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    These are requested times, not live availability. Reception will confirm your
+                    slot.
+                  </p>
                   <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {TIMES.map((t) => (
                       <button
@@ -244,14 +246,17 @@ Phone: ${phone}${notes ? `\nNotes: ${notes}` : ""}`;
                     />
                   </label>
                   <p className="text-xs text-muted-foreground sm:col-span-2">
-                    Your details are used only to confirm this appointment.
+                    Your entries stay in this form until you choose WhatsApp. Review the message
+                    there and press Send to share it with reception.
                   </p>
                 </div>
               )}
 
               {step === 5 && (
                 <div>
-                  <h3 className="text-lg font-semibold tracking-tight">Confirm your appointment</h3>
+                  <h3 className="text-lg font-semibold tracking-tight">
+                    Review your appointment request
+                  </h3>
                   <dl className="mt-4 divide-y divide-border rounded-md border border-border text-sm">
                     {[
                       ["Treatment", treatment],
@@ -275,7 +280,7 @@ Phone: ${phone}${notes ? `\nNotes: ${notes}` : ""}`;
                       className="press inline-flex items-center gap-2 rounded-md bg-teal px-5 py-3 text-sm font-medium text-teal-foreground hover:bg-teal/92"
                     >
                       <MessageCircle className="size-4" aria-hidden />
-                      Send on WhatsApp
+                      Open request in WhatsApp
                     </a>
                     <a
                       href={CLINIC.phoneHref}

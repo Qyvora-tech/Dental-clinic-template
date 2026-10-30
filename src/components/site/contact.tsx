@@ -1,4 +1,5 @@
 import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import clinic from "@/assets/clinic-interior.jpg";
 import { CLINIC, FAQS } from "@/lib/clinic";
 import { Reveal } from "./reveal";
@@ -95,7 +96,7 @@ export function Contact() {
                   >
                     Open City Smiles on Google Maps
                   </a>
-                  <span className="block text-muted-foreground">{CLINIC.city}, Pakistan</span>
+                  <span className="block text-muted-foreground">{CLINIC.address}</span>
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -133,12 +134,12 @@ export function Contact() {
               >
                 Get Directions
               </a>
-              <a
-                href="#book"
+              <Link
+                to="/book"
                 className="press rounded-md border border-border px-5 py-3 text-sm font-medium text-navy hover:bg-card"
               >
                 Book Appointment
-              </a>
+              </Link>
             </div>
           </Reveal>
 

@@ -1,9 +1,25 @@
 import { describe, it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Booking } from "../booking";
-import { CLINIC } from "@/lib/clinic";
+import { CLINIC, validateBookingSearch } from "@/lib/clinic";
 
 describe("Booking Component", () => {
+  it("keeps a service selected when arriving from its treatment page", () => {
+    render(<Booking initialTreatment="Skin Consultation (Skin)" />);
+    expect(screen.getByRole("button", { name: "Skin Consultation (Skin)" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(screen.getByRole("button", { name: /continue/i })).toBeEnabled();
+  });
+
+  it("rejects unknown and non-string treatment query values", () => {
+    expect(validateBookingSearch({ treatment: "Braces" })).toEqual({ treatment: "Braces" });
+    expect(validateBookingSearch({ treatment: ["Braces"] })).toEqual({});
+    expect(validateBookingSearch({ treatment: "Unknown treatment" })).toEqual({});
+    render(<Booking initialTreatment="Unknown treatment" />);
+    expect(screen.getByRole("button", { name: /continue/i })).toBeDisabled();
+  });
   it("renders initial step with treatment options and disabled navigation", () => {
     render(<Booking />);
 
@@ -59,7 +75,7 @@ describe("Booking Component", () => {
 
     // Step 4: Time -> Continue must be disabled initially
     expect(screen.getByText("Step 4 of 6")).toBeInTheDocument();
-    expect(screen.getByText("Available times")).toBeInTheDocument();
+    expect(screen.getByText("Preferred time")).toBeInTheDocument();
     expect(continueButton).toBeDisabled();
 
     // Select time -> Continue enabled
@@ -200,7 +216,7 @@ describe("Booking Component", () => {
 
     // Step 6: Confirmation
     expect(screen.getByText("Step 6 of 6")).toBeInTheDocument();
-    expect(screen.getByText("Confirm your appointment")).toBeInTheDocument();
+    expect(screen.getByText("Review your appointment request")).toBeInTheDocument();
     expect(screen.getByText("Teeth Whitening")).toBeInTheDocument();
     expect(screen.getByText("Dental Surgeon")).toBeInTheDocument();
     expect(screen.getByText("2:00 pm")).toBeInTheDocument();
@@ -208,7 +224,7 @@ describe("Booking Component", () => {
     expect(screen.getByText("03120083540")).toBeInTheDocument();
 
     // Verify WhatsApp Anchor
-    const waLink = screen.getByRole("link", { name: /send on whatsapp/i });
+    const waLink = screen.getByRole("link", { name: /open request in whatsapp/i });
     expect(waLink).toBeInTheDocument();
 
     const expectedPhoneRaw = CLINIC.phoneHref.replace(/\D/g, "");

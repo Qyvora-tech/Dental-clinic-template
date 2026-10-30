@@ -6,6 +6,7 @@ import { TreatmentVisualiser } from "@/components/site/treatment-visualiser";
 import { BeforeAfter } from "@/components/site/before-after";
 import { Education } from "@/components/site/education";
 import { CLINIC } from "@/lib/clinic";
+import { VisitGuide } from "@/components/site/visit-guide";
 
 const title = "Dental Services in Sialkot | Implants, Braces & General Dentistry";
 const description =
@@ -38,6 +39,7 @@ function DentalPage() {
 
       {/* 1. All Categorized Dental Services */}
       <DentalServices />
+      <VisitGuide />
 
       {/* 2. Interactive 3D Treatment Visualiser */}
       <TreatmentVisualiser />

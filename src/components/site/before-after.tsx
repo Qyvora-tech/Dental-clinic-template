@@ -42,16 +42,14 @@ export function BeforeAfter() {
           <Reveal>
             <p className="eyebrow">Before &amp; After</p>
             <h2 className="mt-4 text-3xl sm:text-[2.4rem] sm:leading-tight">
-              Results shown honestly
+              Explore a smile comparison
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Drag the handle to compare a treated case. Every case published here is a genuine,
-              clinic-approved record — photographed in the same lighting and never digitally
-              enhanced. Results vary from patient to patient.
+              Drag the handle to explore this illustrative before-and-after layout. These are demo
+              images, not a documented patient outcome or a promise of treatment results.
             </p>
             <p className="mt-4 max-w-md text-xs leading-relaxed text-muted-foreground">
-              This example is a placeholder set and will be replaced by the clinic's own approved
-              case photographs.
+              Real patient cases can be added with the clinic's approval and patient consent.
             </p>
           </Reveal>
 
@@ -67,7 +65,7 @@ export function BeforeAfter() {
             >
               <img
                 src={after}
-                alt="Smile after professional cleaning and whitening"
+                alt="Illustrative smile comparison, after image — demo only"
                 loading="lazy"
                 width={1200}
                 height={912}
@@ -80,7 +78,7 @@ export function BeforeAfter() {
               >
                 <img
                   src={before}
-                  alt="Smile before treatment"
+                  alt="Illustrative smile comparison, before image — demo only"
                   loading="lazy"
                   width={1200}
                   height={912}

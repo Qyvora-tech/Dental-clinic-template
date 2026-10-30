@@ -346,3 +346,96 @@ export const FAQS = [
     a: "Yes. Pediatric dentistry is a core part of the clinic, with a gentle approach for first visits.",
   },
 ];
+
+// Inner-page content. Keep the homepage's existing copy and data unchanged.
+export const VISIT_STEPS = [
+  {
+    title: "Tell us what brings you in",
+    body: "Choose dental or skin care and share the concerns you would like to discuss. Not sure? Start with a general consultation.",
+  },
+  {
+    title: "Understand your options",
+    body: "Your first visit includes an examination and a discussion of treatment options, costs and the next steps.",
+  },
+  {
+    title: "Leave with a clear plan",
+    body: "Ask about the proposed visits, follow-up and what to expect. Reception can help arrange your next appointment.",
+  },
+] as const;
+
+export const CONSULTATIONS = [
+  {
+    role: "Dental care",
+    treatment: "General Dentistry",
+    intro: "A place to start for check-ups, tooth concerns and restorative care.",
+    topics: [
+      "Routine examinations & cleaning",
+      "Fillings, crowns & missing teeth",
+      "Children's dental appointments",
+    ],
+  },
+  {
+    role: "Orthodontic care",
+    treatment: "Braces",
+    intro: "Discuss teeth alignment, your bite and the options available to you.",
+    topics: [
+      "Braces & clear aligners",
+      "Crowding, spacing & bite concerns",
+      "Treatment planning & follow-up",
+    ],
+  },
+  {
+    role: "Skin & aesthetics",
+    treatment: "Skin Consultation (Skin)",
+    intro: "A consultation focused on your skin concerns, history and current routine.",
+    topics: [
+      "Acne, pigmentation & skin texture",
+      "Skin treatments & facial care",
+      "Hair & scalp concerns",
+    ],
+  },
+] as const;
+
+export const CONSULTATION_QUESTIONS = {
+  General: [
+    "What did the examination show?",
+    "Which treatment options should I consider?",
+    "What follow-up will I need?",
+  ],
+  Restorative: [
+    "What are the options for this tooth?",
+    "How many visits should I plan for?",
+    "What is included in the treatment estimate?",
+  ],
+  Orthodontics: [
+    "Which alignment options suit my teeth and bite?",
+    "How will progress be reviewed?",
+    "What does the plan include after alignment?",
+  ],
+  Cosmetic: [
+    "What changes are realistic for my smile?",
+    "What alternatives should I consider?",
+    "What maintenance and costs should I plan for?",
+  ],
+  Family: [
+    "What will happen at my child's first visit?",
+    "How can I help them feel comfortable?",
+    "When should we arrange the next check-up?",
+  ],
+  Skin: [
+    "Which options suit my skin type and history?",
+    "What should I expect from the proposed treatment?",
+    "What follow-up and costs should I plan for?",
+  ],
+} as const;
+
+export const BOOKING_TREATMENTS = [
+  ...DENTAL_SERVICES.map((service) => service.title),
+  ...SKIN_SERVICES.map((service) => `${service.title} (Skin)`),
+];
+
+export function validateBookingSearch(search: Record<string, unknown>): { treatment?: string } {
+  return typeof search["treatment"] === "string" && BOOKING_TREATMENTS.includes(search["treatment"])
+    ? { treatment: search["treatment"] }
+    : {};
+}

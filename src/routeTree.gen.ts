@@ -14,6 +14,7 @@ import { Route as BookRouteImport } from './routes/book'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DentalRouteImport } from './routes/dental'
 import { Route as DoctorsRouteImport } from './routes/doctors'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SkinRouteImport } from './routes/skin'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const DoctorsRoute = DoctorsRouteImport.update({
   path: '/doctors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SkinRoute = SkinRouteImport.update({
   id: '/skin',
   path: '/skin',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/dental': typeof DentalRoute
   '/doctors': typeof DoctorsRoute
+  '/services': typeof ServicesRoute
   '/skin': typeof SkinRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/dental': typeof DentalRoute
   '/doctors': typeof DoctorsRoute
+  '/services': typeof ServicesRoute
   '/skin': typeof SkinRoute
 }
 export interface FileRoutesById {
@@ -70,14 +78,25 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/dental': typeof DentalRoute
   '/doctors': typeof DoctorsRoute
+  '/services': typeof ServicesRoute
   '/skin': typeof SkinRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/book' | '/contact' | '/dental' | '/doctors' | '/skin'
+  fullPaths:
+    '/' | '/book' | '/contact' | '/dental' | '/doctors' | '/services' | '/skin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/book' | '/contact' | '/dental' | '/doctors' | '/skin'
-  id: '__root__' | '/' | '/book' | '/contact' | '/dental' | '/doctors' | '/skin'
+  to:
+    '/' | '/book' | '/contact' | '/dental' | '/doctors' | '/services' | '/skin'
+  id:
+    | '__root__'
+    | '/'
+    | '/book'
+    | '/contact'
+    | '/dental'
+    | '/doctors'
+    | '/services'
+    | '/skin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -86,6 +105,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DentalRoute: typeof DentalRoute
   DoctorsRoute: typeof DoctorsRoute
+  ServicesRoute: typeof ServicesRoute
   SkinRoute: typeof SkinRoute
 }
 
@@ -126,6 +146,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DoctorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/skin': {
       id: '/skin'
       path: '/skin'
@@ -142,6 +169,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DentalRoute: DentalRoute,
   DoctorsRoute: DoctorsRoute,
+  ServicesRoute: ServicesRoute,
   SkinRoute: SkinRoute,
 }
 export const routeTree = rootRouteImport

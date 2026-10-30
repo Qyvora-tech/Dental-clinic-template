@@ -2,26 +2,13 @@ import { Link } from "@tanstack/react-router";
 import skin from "@/assets/skin-consult.jpg";
 import { SKIN_SERVICES } from "@/lib/clinic";
 import { Reveal } from "./reveal";
+import { ServiceDetails } from "./service-details";
 
 export function SkinClinic() {
   return (
     <section id="skin" className="bg-background">
       <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
-          <Reveal>
-            <div className="overflow-hidden rounded-md border border-border shadow-soft">
-              <img
-                src={skin}
-                alt="Dermatologist examining a patient's skin during a consultation"
-                loading="lazy"
-                width={1200}
-                height={912}
-                className="img-zoom aspect-[4/5] w-full object-cover"
-                decoding="async"
-              />
-            </div>
-          </Reveal>
-
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-16">
           <div>
             <Reveal>
               <p className="eyebrow">Skin Clinic</p>
@@ -43,6 +30,7 @@ export function SkinClinic() {
                     <p className="mt-1.5 text-[0.82rem] leading-relaxed text-muted-foreground">
                       {s.blurb}
                     </p>
+                    <ServiceDetails {...s} group="Skin" treatment={`${s.title} (Skin)`} />
                   </div>
                 </Reveal>
               ))}
@@ -51,12 +39,27 @@ export function SkinClinic() {
             <Reveal delay={120}>
               <Link
                 to="/book"
+                search={{ treatment: "Skin Consultation (Skin)" }}
                 className="press mt-8 inline-flex rounded-md border border-border px-6 py-3.5 text-sm font-medium text-navy hover:bg-ice"
               >
                 Book a skin consultation
               </Link>
             </Reveal>
           </div>
+
+          <Reveal>
+            <div className="overflow-hidden rounded-md border border-border bg-ice shadow-soft">
+              <img
+                src={skin}
+                alt="Dermatologist examining a patient's skin during a consultation"
+                loading="lazy"
+                width={1200}
+                height={912}
+                className="img-zoom aspect-[4/5] w-full object-cover"
+                decoding="async"
+              />
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

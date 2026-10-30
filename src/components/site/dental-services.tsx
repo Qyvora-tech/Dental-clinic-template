@@ -7,6 +7,7 @@ import smileAfter from "@/assets/smile-after.jpg";
 import clinic from "@/assets/clinic-interior.jpg";
 import { DENTAL_SERVICES } from "@/lib/clinic";
 import { Reveal } from "./reveal";
+import { ServiceDetails } from "./service-details";
 
 const FEATURED: { slug: string; img: string; alt: string }[] = [
   {
@@ -55,41 +56,33 @@ export function DentalServices() {
             return (
               <Reveal key={item.slug} delay={i * 90}>
                 <article className="lift group h-full overflow-hidden rounded-md border border-border bg-card shadow-soft">
-                  <div className="overflow-hidden">
+                  <div className="flex min-h-64 flex-col justify-between p-7 lg:min-h-72 lg:p-8">
+                    <p className="eyebrow">{service.group}</p>
+                    <h3 className="mt-3 text-2xl">{service.title}</h3>
+                    <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground">
+                      {service.blurb}
+                    </p>
+                    <div className="mt-6 flex items-center gap-5">
+                      <ServiceDetails {...service} treatment={service.title} label="Learn more" />
+                      <Link
+                        to="/book"
+                        search={{ treatment: service.title }}
+                        className="press text-sm text-navy underline decoration-teal/50 underline-offset-4 hover:decoration-teal"
+                      >
+                        Book appointment
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="overflow-hidden border-t border-border bg-ice">
                     <img
                       src={item.img}
                       alt={item.alt}
                       loading="lazy"
                       width={1200}
                       height={912}
-                      className="img-zoom aspect-[16/10] w-full object-cover"
+                      className="img-zoom aspect-[16/9] w-full object-cover"
                       decoding="async"
                     />
-                  </div>
-                  <div className="p-7">
-                    <p className="eyebrow">{service.group}</p>
-                    <h3 className="mt-3 text-2xl">{service.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {service.blurb}
-                    </p>
-                    <div className="mt-6 flex items-center gap-5">
-                      <a
-                        href="#treatment-3d"
-                        className="press inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-teal"
-                      >
-                        Learn more
-                        <ArrowUpRight
-                          className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                          aria-hidden
-                        />
-                      </a>
-                      <Link
-                        to="/book"
-                        className="press text-sm text-navy underline decoration-teal/50 underline-offset-4 hover:decoration-teal"
-                      >
-                        Book appointment
-                      </Link>
-                    </div>
                   </div>
                 </article>
               </Reveal>
@@ -105,6 +98,7 @@ export function DentalServices() {
                 key={g}
                 type="button"
                 onClick={() => setFilter(g)}
+                aria-pressed={filter === g}
                 className={`press shrink-0 rounded-full border px-4 py-2 text-sm ${
                   filter === g
                     ? "border-primary bg-primary text-primary-foreground"
@@ -127,11 +121,13 @@ export function DentalServices() {
                 </p>
                 <Link
                   to="/book"
-                  className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100"
+                  search={{ treatment: service.title }}
+                  className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-teal"
                 >
                   Book appointment
                   <ArrowUpRight className="size-3.5" aria-hidden />
                 </Link>
+                <ServiceDetails {...service} treatment={service.title} />
               </div>
             </Reveal>
           ))}

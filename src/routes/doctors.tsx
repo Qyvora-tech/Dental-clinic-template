@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Award, CalendarCheck, MessageCircle, Phone, UserCheck } from "lucide-react";
+import { CalendarCheck, Phone, UserCheck } from "lucide-react";
 import { PageBanner } from "@/components/site/page-banner";
-import { Doctors, PatientStories } from "@/components/site/doctors";
-import { DoctorLead } from "@/components/site/doctor-lead";
+import { ClinicalTeam } from "@/components/site/clinical-team";
+import { VisitGuide } from "@/components/site/visit-guide";
 import { CLINIC } from "@/lib/clinic";
 
 const title = "Our Doctors & Specialists | City Smiles Clinic Sialkot";
 const description =
-  "Meet the qualified dental surgeons, orthodontists, and skin specialists at City Smiles in Sialkot. View qualifications, degrees, and verified patient reviews.";
+  "Explore dental, orthodontic and skin consultations at City Smiles in Sialkot. Contact reception for clinician details and appointment availability.";
 
 export const Route = createFileRoute("/doctors")({
   head: () => ({
@@ -28,20 +28,19 @@ function DoctorsPage() {
     <main>
       <PageBanner
         title="Meet Our Clinical Team & Specialists"
-        subtitle="Diagnosis and treatment planning by certified dental surgeons and dermatology specialists. Complete transparency in doctor qualifications, PMDC registrations, and clinical experience."
+        subtitle="Find the right consultation for your smile and skin. Explore our care departments and speak with reception about clinician availability."
         breadcrumb="Doctors & Team"
         eyebrow="Clinical Specialists"
-        badge="Foreign Qualified & PMDC"
+        badge="Dental & Skin Care"
       />
 
       {/* 1. Doctors Cards */}
-      <Doctors />
+      <ClinicalTeam />
 
       {/* 2. Clinical Credentials Spotlight */}
-      <DoctorLead />
+      <VisitGuide />
 
       {/* 3. Real Patient Experiences & Stories */}
-      <PatientStories />
 
       {/* Bottom Consultation CTA */}
       <section className="border-t border-border bg-[#011e4d] py-16 text-white">

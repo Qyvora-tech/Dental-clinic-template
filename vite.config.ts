@@ -10,6 +10,11 @@ export default defineConfig({
     tsconfigPaths(),
     tanstackStart({
       server: { entry: "server" },
+      prerender: {
+        enabled: process.env["CITY_SMILES_STATIC"] === "1",
+        crawlLinks: false,
+        failOnError: true,
+      },
     }),
     viteReact(),
     tailwindcss(),

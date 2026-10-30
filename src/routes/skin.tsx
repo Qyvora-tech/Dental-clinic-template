@@ -4,6 +4,7 @@ import { PageBanner } from "@/components/site/page-banner";
 import { SkinClinic } from "@/components/site/skin-clinic";
 import { Education } from "@/components/site/education";
 import { CLINIC } from "@/lib/clinic";
+import { VisitGuide } from "@/components/site/visit-guide";
 
 const title = "Skin Clinic in Sialkot | Clinical Dermatology, Acne & Hydrafacial";
 const description =
@@ -28,7 +29,7 @@ function SkinPage() {
     <main>
       <PageBanner
         title="Clinical Dermatology & Skin Aesthetics"
-        subtitle="Medical skin care tailored to your unique skin type and tolerance in Sialkot. Evidence-based protocols with no bleaching, no steroids, and no unsafe shortcuts."
+        subtitle="Skin care starts with understanding your concerns, history and routine. Explore consultation and treatment options tailored to your skin in Sialkot."
         breadcrumb="Skin Clinic"
         eyebrow="Dermatology Department"
         badge="13 Medical Protocols"
@@ -36,9 +37,10 @@ function SkinPage() {
 
       {/* 1. Full Medical Dermatology Section */}
       <SkinClinic />
+      <VisitGuide skin />
 
       {/* 2. Patient Education Videos */}
-      <Education />
+      <Education skin />
 
       {/* 3. Skin Care Consultation CTA */}
       <section className="border-t border-border bg-[#011e4d] py-16 text-white">

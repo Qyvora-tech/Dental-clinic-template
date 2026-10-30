@@ -243,7 +243,16 @@ export function TreatmentVisualiser() {
               </ol>
 
               <a
-                href="#book"
+                href={`/book?treatment=${encodeURIComponent(
+                  (
+                    {
+                      "root-canal": "Root Canal Treatment",
+                      braces: "Braces",
+                      aligners: "Clear Aligners",
+                      implant: "Dental Implants",
+                    } as Record<string, string>
+                  )[activeSet.id] ?? "General Dentistry",
+                )}`}
                 className="press mt-6 inline-flex justify-center rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/92"
               >
                 Discuss this treatment with a dentist
