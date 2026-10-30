@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import bracesImg from "@/assets/braces.jpg";
 import { DentalServices } from "@/components/site/dental-services";
 import { PageBanner } from "@/components/site/page-banner";
 import { SkinClinic } from "@/components/site/skin-clinic";
@@ -30,6 +31,8 @@ function ServicesPage() {
         breadcrumb="All Services"
         eyebrow="City Smiles Care Guide"
         badge="Dental + Skin"
+        image={bracesImg}
+        imageAlt="Specialized dental and skin treatments at City Smiles"
       />
       <DentalServices />
       <SkinClinic />

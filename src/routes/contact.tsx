@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import clinicInteriorImg from "@/assets/clinic-interior.jpg";
 import { PageBanner } from "@/components/site/page-banner";
 import { Contact, Faqs } from "@/components/site/contact";
 
@@ -29,6 +30,8 @@ function ContactPage() {
         breadcrumb="Contact & FAQs"
         eyebrow="Clinic Information"
         badge="Sialkot, Pakistan"
+        image={clinicInteriorImg}
+        imageAlt="Visit City Smiles Dental and Skin Clinic in Sialkot"
       />
 
       {/* 1. Clinic Contact Info, Timings & Google Maps */}

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, HelpCircle, MessageCircle, Phone, ShieldCheck } from "lucide-react";
+import smileAfterImg from "@/assets/smile-after.jpg";
 import { PageBanner } from "@/components/site/page-banner";
 import { Booking } from "@/components/site/booking";
 import { CLINIC, validateBookingSearch } from "@/lib/clinic";
@@ -33,6 +34,8 @@ function BookPage() {
         breadcrumb="Book Appointment"
         eyebrow="Easy Online Reservation"
         badge="Instant Handoff"
+        image={smileAfterImg}
+        imageAlt="Book an appointment for dental and skin aesthetics at City Smiles"
       />
 
       {/* 1. Full 6-Step Booking Wizard */}

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarCheck, MessageCircle, Phone, Sparkles } from "lucide-react";
+import skinConsultImg from "@/assets/skin-consult.jpg";
 import { PageBanner } from "@/components/site/page-banner";
 import { SkinClinic } from "@/components/site/skin-clinic";
 import { Education } from "@/components/site/education";
@@ -33,6 +34,8 @@ function SkinPage() {
         breadcrumb="Skin Clinic"
         eyebrow="Dermatology Department"
         badge="13 Medical Protocols"
+        image={skinConsultImg}
+        imageAlt="Clinical dermatology and medical skin care at City Smiles"
       />
 
       {/* 1. Full Medical Dermatology Section */}

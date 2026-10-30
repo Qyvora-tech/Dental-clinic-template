@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarCheck, Phone } from "lucide-react";
+import cleaningImg from "@/assets/cleaning.jpg";
 import { PageBanner } from "@/components/site/page-banner";
 import { DentalServices } from "@/components/site/dental-services";
 import { TreatmentVisualiser } from "@/components/site/treatment-visualiser";
@@ -35,6 +36,8 @@ function DentalPage() {
         breadcrumb="Dental Services"
         eyebrow="Dental Care Department"
         badge="16 Clinical Treatments"
+        image={cleaningImg}
+        imageAlt="Comprehensive dental care and treatments at City Smiles"
       />
 
       {/* 1. All Categorized Dental Services */}

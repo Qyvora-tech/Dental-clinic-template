@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarCheck, Phone, UserCheck } from "lucide-react";
+import clinicInteriorImg from "@/assets/clinic-interior.jpg";
 import { PageBanner } from "@/components/site/page-banner";
 import { ClinicalTeam } from "@/components/site/clinical-team";
 import { VisitGuide } from "@/components/site/visit-guide";
@@ -32,6 +33,8 @@ function DoctorsPage() {
         breadcrumb="Doctors & Team"
         eyebrow="Clinical Specialists"
         badge="Dental & Skin Care"
+        image={clinicInteriorImg}
+        imageAlt="City Smiles modern clinical treatment rooms and specialists"
       />
 
       {/* 1. Doctors Cards */}
