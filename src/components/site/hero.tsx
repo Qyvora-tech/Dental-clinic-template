@@ -19,7 +19,7 @@ export function Hero() {
     <>
       <section
         id="top"
-        className="relative flex min-h-[520px] w-full flex-col justify-start overflow-visible bg-[#011f4b] pt-32 pb-24 sm:pt-36 sm:pb-28 lg:h-[580px] lg:min-h-[580px] lg:mb-16 lg:pt-36 lg:pb-0 xl:h-[620px] xl:min-h-[620px] xl:mb-20"
+        className="relative flex min-h-[540px] w-full flex-col overflow-visible bg-[#011f4b] pt-24 pb-16 sm:pt-28 sm:pb-20 lg:h-[580px] lg:min-h-[580px] lg:mb-16 lg:pt-24 lg:pb-24 xl:h-[620px] xl:min-h-[620px] xl:mb-20"
       >
         {/* Full-bleed Background Photograph */}
         <img
@@ -38,8 +38,8 @@ export function Hero() {
           className="absolute inset-0 bg-gradient-to-r from-[#011a42]/92 via-[#012c70]/80 to-[#012c70]/68 backdrop-blur-[0.5px]"
         />
 
-        {/* Hero Content Layer */}
-        <div className="relative z-20 mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        {/* Hero Content Layer - Centered vertically between the top navbar and the bottom floating card */}
+        <div className="relative z-20 mx-auto flex flex-1 w-full max-w-7xl items-center px-5 sm:px-6 lg:px-8">
           <div className="max-w-2xl text-left">
             {/* Main Heading — Dental Aesthetics Clean Bold Sans-Serif */}
             <h1 className="font-sans text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-[46px] lg:leading-[1.16]">
